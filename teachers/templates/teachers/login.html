@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - [Your Website Name]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- General Styles (Consistent with Homepage) --- */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --heading-font: 'Poppins', sans-serif;
+            --body-font: 'Poppins', sans-serif;
+            --border-color: #ddd;
+        }
+
+        body {
+            font-family: var(--body-font);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            /* Center the login form vertically and horizontally */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- Login Form Container --- */
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box; /* Ensures padding is included in the width */
+        }
+        
+        .login-container h1 {
+            font-family: var(--heading-font);
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--text-color);
+        }
+
+        /* --- Form Group Styling (Label + Input) --- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: var(--body-font);
+            box-sizing: border-box; /* Important for responsive forms */
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* --- Submit Button --- */
+        .submit-btn {
+            width: 100%;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* --- Helper Links --- */
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 0 10px;
+            transition: text-decoration 0.3s;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="login-container">
+
+        <h3> Teacher Login</h3><hr>
+  
+        <form action="#" method="POST">
+            {%csrf_token%}
+           {% if messages %}
+           {{message.tags}}
+          <div class="alert alert-primary" role="alert">
+           {% for message in messages %}
+           {{ message }}
+            {% endfor %}
+        {% endif %}
+            <!-- Email/Username Field -->
+            <div class="form-group">
+                <label for="username">Email or Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary">login</button>
+        </form>
+
+        <!-- Links for password reset and registration -->
+        <div class="links">
+            <a href="#">Forgot Password?</a>
+            
+        </div>
+    </div>
+
+</body>
+</html>

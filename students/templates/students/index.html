@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-box {
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .hero-box h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .hero-box p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .admin {
+            background-color: #e74c3c;
+        }
+
+        .teacher {
+            background-color: #3498db;
+        }
+
+        .student {
+            background-color: #2ecc71;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>Student Management System</h2>
+        <div>
+            <a href=" ">Home</a>
+            <a href="#">About</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-box">
+            <h1>Welcome to Student Management System</h1>
+            <p>
+                A simple and powerful system to manage students, teachers,
+                attendance, and results efficiently.
+            </p>
+
+            <div class="btn-group">
+                <a href="/admin" class="btn admin">Admin Login</a>
+                <a href="teachers/login" class="btn teacher">Teacher Login</a>
+                <a href="/students/login" class="btn student">Student Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Student Management System | Django Project
+    </footer>
+
+</body>
+</html>
