@@ -4,7 +4,7 @@ from django.conf import settings
 
 # Create your models here.
 class Teachers(models.Model):
-    user  = models.OneToOneField(  settings.AUTH_USER_MODEL,user, on_delete=models.CASCADE)
+    user  = models.OneToOneField( user, on_delete=models.CASCADE,null= True)
     first_name= models.CharField(max_length=50)
     last_name = models.CharField(max_length=30)
     t_id = models.CharField(max_length=50 , unique= True)
