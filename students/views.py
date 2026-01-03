@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -10,4 +14,37 @@ def t_login(request):
     return render(request , 'students/t_login.html')
 
 def s_login(request):
+    if request.method == "POST":
+        username = request.POST.get("username")  # or username field
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            # check student role
+            if user.groups.filter(name="students").exists():
+                login(request, user)
+                return redirect("student_dashboard")
+            else:
+                messages.error(request, "You are not a student")
+        else:
+            messages.error(request, "Invalid credentials")
+
+
     return render(request , 'students/s_login.html')
+
+
+
+@login_required
+def student_dashboard(request):
+    return HttpResponse('hello world')
+    # return render(request, "students/dashboard.html")
+
+# def student_dashboard(req):
+#     return HttpResponse('hello world')
+
+
+# def student_login(request):
+    
+
+#     return render(request, "students/login.html")
