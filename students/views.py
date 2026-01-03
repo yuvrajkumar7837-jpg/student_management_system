@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
 
 # Create your views here.
 
@@ -11,7 +14,7 @@ def home(request):
     return render(request, 'students/index.html')
 
 def t_login(request):
-    return render(request , 'students/t_login.html')
+    return render(request , 'teachers/t_login.html')
 
 def s_login(request):
     if request.method == "POST":
@@ -37,14 +40,10 @@ def s_login(request):
 
 @login_required
 def student_dashboard(request):
-    return HttpResponse('hello world')
+    return render(request , 'students/dashboard.html')
     # return render(request, "students/dashboard.html")
 
-# def student_dashboard(req):
-#     return HttpResponse('hello world')
-
-
-# def student_login(request):
+def logout_view(request):
+    logout(request)
+    return redirect('/')
     
-
-#     return render(request, "students/login.html")

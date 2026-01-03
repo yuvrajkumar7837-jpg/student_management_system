@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f8; }
+        .box {
+            width: 60%;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        a { color: red; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h1>🎓 Student Dashboard</h1>
+    <p>Welcome, <b>{{ request.user.username }}</b></p>
+    <p>User Type: {{ request.user.user_type }}</p>
+
+    <hr>
+
+    <p>Here you can:</p>
+    <ul style="list-style: none;">
+        <li>📚 View courses</li>
+        <li>📝 View attendance</li>
+        <li>📊 View results</li>
+    </ul>
+
+    <br>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+
+</body>
+</html>

@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from students import views
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',  views.home , name ='home'),
     path('students/' , include('students.urls')),
     path('teachers/' , include('teachers.urls')),
+    # path("logout/", LogoutView.as_view(), name="logout"),
 
     # path('teacher_login/' , views.t_login , name='t_login'),
     # path('student_login/' , views.s_login , name='s_login'),
