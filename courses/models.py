@@ -49,7 +49,7 @@ class Course(models.Model):  # ✅ Added separate Course model
 
 class Attendance(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    course = models.ForeignKey(Department, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     STATUS_CHOICES = (
         ('present', 'Present'),
