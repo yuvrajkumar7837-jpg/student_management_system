@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Dashboard</title>
-    <style>
-        body { font-family: Arial; background: #f4f6f8; }
-        .box {
-            width: 60%;
-            margin: 100px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        a { color: red; text-decoration: none; }
-    </style>
-</head>
-<body>
+{% extends "students/base.html" %}
+{%block title%}
+ <title>Student Dashboard</title>
+ {%endblock title%}
 
+ {%block extra_css%}
+  <style>
+.dashboard-box {
+    width: 60%;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dashboard-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-box li {
+    margin: 10px 0;
+    font-size: 16px;
+}
+</style>
+{%endblock extra_css%}
+
+{%block content %}
+
+<div class = "dashboard-box">
 <div class="box">
     <h1>🎓 Student Dashboard</h1>
     <p>Welcome, <b>{{ request.user.username }}</b></p>
@@ -37,5 +50,7 @@
     <a href="{% url 'logout' %}">Logout</a>
 </div>
 
-</body>
-</html>
+</div>
+
+
+{% endblock content %}

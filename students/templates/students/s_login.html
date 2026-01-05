@@ -1,13 +1,7 @@
+{% extends "students/base.html"%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - [Your Website Name]</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
+{%block extra_css%}
+  <style>
         /* --- General Styles (Consistent with Homepage) --- */
         :root {
             --primary-color: #007bff;
@@ -18,22 +12,10 @@
             --border-color: #ddd;
         }
 
-        body {
-            font-family: var(--body-font);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--secondary-color);
-            /* Center the login form vertically and horizontally */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
 
         /* --- Login Form Container --- */
         .login-container {
+            
             background-color: #fff;
             padding: 40px;
             border-radius: 8px;
@@ -44,6 +26,7 @@
         }
         
         .login-container h1 {
+
             font-family: var(--heading-font);
             font-size: 2rem;
             font-weight: 600;
@@ -114,16 +97,35 @@
         .links a:hover {
             text-decoration: underline;
         }
+
+        .login-page {
+    min-height: calc(100vh - 120px); /* navbar + footer space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+   .login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;}
     </style>
-</head>
-<body>
+
+    {%endblock extra_css%}
+
+{% block content%}
+
+    <div class="login-page"> 
 
     
     <div class="login-container">
 
         <h3> Student Login</h3><hr>
   
-        <form action="#" method="POST">
+        <form action="" method="POST">
            {%csrf_token%}
            {% if messages %}
            {{message.tags}}
@@ -131,10 +133,10 @@
            {% for message in messages %}
            {{ message }}
             {% endfor %}
-        {% endif %}   
+        {% endif %}
             <!-- Email/Username Field -->
             <div class="form-group">
-                <label for="username">Email or Id</label>
+                <label for="username">Email or Username</label>
                 <input type="text" id="username" name="username" required>
             </div>
             
@@ -154,6 +156,5 @@
             
         </div>
     </div>
-
-</body>
-</html>
+    </div>
+{%endblock content%}

@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student Management System</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static ' students/css/style.css' %}">
+{% extends "students/base.html" %}
+{%block extra_css%}
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f8;
-        }
-
-        /* Navbar */
-        .navbar {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar h2 {
-            font-size: 22px;
-        }
-
-        .navbar a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .navbar a:hover {
-            text-decoration: underline;
-        }
+       
 
         /* Hero Section */
         .hero {
@@ -117,17 +77,12 @@
             margin-top: 20px;
         }
     </style>
+    {%endblock extra_css%}
 </head>
+{% block content%}
 <body>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <h2>Student Management System</h2>
-        <div>
-            <a href=" ">Home</a>
-            <a href="#">About</a>
-        </div>
-    </div>
+
 
     <!-- Hero Section -->
     <div class="hero">
@@ -145,6 +100,8 @@
             </div>
         </div>
     </div>
+
+    {%endblock content%}
 
     <!-- Footer -->
     <footer>
