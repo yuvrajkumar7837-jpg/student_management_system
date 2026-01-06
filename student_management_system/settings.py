@@ -37,11 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tailwind',
+    'django_browser_reload',
+    'theme',
     'students',
     'teachers',
     'courses',
     'accounts',
 ]
+
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+NPM_BIN_PATH = 'npm.cmd'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
