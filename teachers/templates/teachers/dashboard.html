@@ -1,6 +1,17 @@
 
 {% extends "layouts/base.html" %}
 
+{% block extra_css%}
+<style>
+     .box{
+        display: flex;
+        justify-content: center;
+     }
+</style>
+
+{% endblock extra_css%}
+
+{% block content %}
 <div class="box">
     <h1>👨‍🏫 Teacher Dashboard</h1>
     <p>Welcome, <b>{{ request.user.username }}</b></p>
@@ -21,6 +32,4 @@
     <br>
     <a href="{% url 'logout' %}">Logout</a>
 </div>
-
-</body>
-</html>
+{% endblock content%}
