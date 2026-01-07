@@ -1,35 +1,57 @@
-
 {% extends "layouts/base.html" %}
+{%block title%}
+ <title>Student Dashboard</title>
+ {%endblock title%}
 
-{% block extra_css%}
-<style>
-     .box{
-        display: flex;
-        justify-content: center;
-     }
+ {%block extra_css%}
+  <style>
+.dashboard-box {
+    width: 60%;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dashboard-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-box li {
+    margin: 10px 0;
+    font-size: 16px;
+}
 </style>
+{%endblock extra_css%}
 
-{% endblock extra_css%}
+{%block content %}
 
-{% block content %}
+<div class = "dashboard-box">
 <div class="box">
-    <h1>👨‍🏫 Teacher Dashboard</h1>
+    <h1>🎓 Teacher Dashboard</h1>
     <p>Welcome, <b>{{ request.user.username }}</b></p>
     <p>User Type: {{ request.user.user_type }}</p>
+     <p><b>Email:</b> {{ request.user.email }}</p>
+    <p><b>Phone:</b> {{ request.user.phone }}</p>
 
     <hr>
 
     <p>Here you can:</p>
     <ul style="list-style: none;">
-        
-        <li><a href="mark_attendance/">
-            📋 Mark attendance
-        </a></li>
-        <li><a href="">📚 Manage courses</a></li>
-        <li><a href="">📊 Upload results</a></li>
+        <li><a href="">📚 View courses</a></li>
+        <li><a href="mark_attendance/">📝 marks attendance</a></li>
+        <li><a href="">📊 marks results</a></li>
+        <li><a href="">📊 view results</a></li>
     </ul>
 
     <br>
     <a href="{% url 'logout' %}">Logout</a>
 </div>
-{% endblock content%}
+
+</div>
+
+
+{% endblock content %}

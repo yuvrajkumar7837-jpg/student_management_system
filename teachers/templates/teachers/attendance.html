@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device_width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "layouts/base.html"%}
+
+{% block content%}
     <div class="box">
-    <h2>📋 Mark Attendance</h2>
+    <h1>📋 Mark Attendance</h1>
 
     <form method="post">
         {% csrf_token %}
@@ -19,7 +14,6 @@
                 <option value="dfedws">fcdf</option>
                 <option  value="dfedws">efef</option> -->
             {% for course in courses %}
-                <option value="gv">gvhb</option>
                 <option value="{{ course.id }}">{{ course.course_name }}</option>
                 
             {% endfor %}
@@ -27,7 +21,7 @@
 
         <hr>
 
-        <table border="1" width="100%" cellpadding="5">
+        <table border ="15px" width="100%" cellpadding="5">
             <tr>
                 <th>Student</th>
                 <th>Status</th>
@@ -35,22 +29,35 @@
 
             {% for student in students %}
             <tr>
-                <td>{{ student.user.username }}</td>
-                <td>
-                    <select name="status_{{ student.id }}">
+                <td class="px-6 py-4 border text-center">
+                        {{ student.user.username }}
+                </td>
+                <td class="px-6 py-4 border">
+                    <div class="flex justify-center">
+                        <select class="border rounded px-4 py-2">
                         <option value="Present">Present</option>
                         <option value="Absent">Absent</option>
-                    </select>
-                </td>
-            </tr>
+                        </select>
+                    </div>
+                    </td>
+
             {% endfor %}
         </table>
 
         <br>
-        <button type="submit">Submit Attendance</button>
+        <button
+  type="submit"
+  class="bg-gradient-to-r from-blue-600 to-indigo-600
+         text-white font-semibold px-8 py-3 rounded-xl
+         shadow-lg transform transition-all duration-300
+         hover:scale-105 hover:shadow-xl
+         active:scale-95 focus:outline-none focus:ring-4
+         focus:ring-blue-300">
+  Submit Attendance
+</button>
     </form>
 </div>
-    
+{% endblock content%}
 </body>
 </html>
 
