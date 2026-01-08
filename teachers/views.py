@@ -38,6 +38,7 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+@login_required
 def mark_attendance(req):
     if  not req.user.groups.filter(name = 'teachers').exists():
         messages.error(req , 'Access Denied You sre not a teacher')

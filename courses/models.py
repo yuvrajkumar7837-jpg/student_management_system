@@ -59,10 +59,6 @@ class Attendance(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     marked_by = models.ForeignKey(Teachers, on_delete=models.SET_NULL, null=True)
     
-    class Meta:
-        unique_together = ['student', 'course', 'date']
-        ordering = ['-date']
-    
     def __str__(self):
         return f"{self.student} - {self.course} - {self.date}"
     
