@@ -51,7 +51,7 @@ def mark_attendance(req):
     if req.method =='POST':
         course_id = req.POST.get('course')
         for student in students:
-            status = req.POST.get(f"status_{student.id}")
+            status = req.POST.get(f"Status")
             Attendance.objects.create(
                 student=student,
                 course_id=course_id,

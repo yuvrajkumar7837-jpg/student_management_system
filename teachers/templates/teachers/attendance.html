@@ -4,15 +4,11 @@
     <div class="box">
     <h1>📋 Mark Attendance</h1>
 
-    <form method="post">
+    <form method="post" enctype = "multipart/form_data">
         {% csrf_token %}
 
         <label>Select Course:</label><br>
         <select name="course" required>
-            <!-- <option value="dfedws">efefef</option>
-                <option value="dfedws">fe</option>
-                <option value="dfedws">fcdf</option>
-                <option  value="dfedws">efef</option> -->
             {% for course in courses %}
                 <option value="{{ course.id }}">{{ course.course_name }}</option>
                 
@@ -34,7 +30,7 @@
                 </td>
                 <td class="px-6 py-4 border">
                     <div class="flex justify-center">
-                        <select class="border rounded px-4 py-2">
+                        <select name = "Status" class="border rounded px-4 py-2">
                         <option value="Present">Present</option>
                         <option value="Absent">Absent</option>
                         </select>

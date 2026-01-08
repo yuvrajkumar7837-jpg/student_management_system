@@ -56,7 +56,7 @@ class Attendance(models.Model):
         ('absent', 'Absent'),
         ('late', 'Late'),
     )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, null= True)
     marked_by = models.ForeignKey(Teachers, on_delete=models.SET_NULL, null=True)
     
     def __str__(self):
