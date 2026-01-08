@@ -11,7 +11,7 @@ class Student(models.Model):
     # passw = models.IntegerField(default=12)
     email =   models.EmailField(unique= True)
     phone_no = models.CharField(max_length=15)
-    d_o_b = models.DateField()
+    d_o_b = models.DateField(null= True)
     enrollement_date = models.DateField(auto_now_add=True)
 
 
