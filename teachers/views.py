@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
 from courses.models import Course ,Attendance
 from students.models import Student
-
+from teachers.models import Teachers
 from django.http import HttpResponse
 
 # Create your views here.
@@ -41,7 +41,7 @@ def logout_view(request):
 @login_required
 def mark_attendance(req):
     if  not req.user.groups.filter(name = 'teachers').exists():
-        messages.error(req , 'Access Denied You sre not a teacher')
+        messages.error(req , 'Access Denied You are not a teacher')
         return redirect('teacher_dashboard')
     
     courses = Course.objects.all()
@@ -49,13 +49,22 @@ def mark_attendance(req):
     students = Student.objects.all()
 
     if req.method =='POST':
-        course_id = req.POST.get('course')
+        course_code = req.POST.get('course')
+        course = Course.objects.get(id=course_code)
+        
+        try:
+            teacher = Teachers.objects.get(user=req.user)
+        except Teachers.DoesNotExist:
+            messages.error(req, "Teacher profile missing")
+            return redirect("teacher_dashboard")
+
         for student in students:
-            status = req.POST.get(f"Status")
+            status = req.POST.get(f"Status_{student.id}")
             Attendance.objects.create(
                 student=student,
-                course_id=course_id,
-                status=status
+                course=course,
+                status=status,
+                marked_by = teacher
             )
 
         messages.success(req, "Attendance marked successfully")

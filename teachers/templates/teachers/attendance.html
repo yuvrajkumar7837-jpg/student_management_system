@@ -4,7 +4,7 @@
     <div class="box">
     <h1>📋 Mark Attendance</h1>
 
-    <form method="post" enctype = "multipart/form_data">
+    <form method="post" enctype = "multipart/form-data">
         {% csrf_token %}
 
         <label>Select Course:</label><br>
@@ -30,9 +30,9 @@
                 </td>
                 <td class="px-6 py-4 border">
                     <div class="flex justify-center">
-                        <select name = "Status" class="border rounded px-4 py-2">
-                        <option value="Present">Present</option>
-                        <option value="Absent">Absent</option>
+                        <select name = "Status_{{student.id}}" class="border rounded px-4 py-2" required>
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
                         </select>
                     </div>
                     </td>

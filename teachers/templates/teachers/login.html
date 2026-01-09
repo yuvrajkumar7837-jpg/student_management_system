@@ -125,7 +125,7 @@
 
         <h3> Teacher Login</h3><hr>
   
-        <form action="" method="POST">
+        <form  method="POST">
            {%csrf_token%}
            {% if messages %}
            {{message.tags}}
@@ -133,7 +133,7 @@
            {% for message in messages %}
            {{ message }}
             {% endfor %}
-        {% endif %}
+            {% endif %}
             <!-- Email/Username Field -->
             <div class="form-group">
                 <label for="username">Email or Username</label>

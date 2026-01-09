@@ -1,6 +1,7 @@
 from django.db import models
 from teachers.models import Teachers
 from students.models import Student
+
 from django.contrib.auth.models import AbstractUser # for imporrting built in models
 # Create your models here.
 
@@ -56,11 +57,10 @@ class Attendance(models.Model):
         ('absent', 'Absent'),
         ('late', 'Late'),
     )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, null= True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES)
     marked_by = models.ForeignKey(Teachers, on_delete=models.SET_NULL, null=True)
     
-    def __str__(self):
-        return f"{self.student} - {self.course} - {self.date}"
+    
     
 class Result(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
