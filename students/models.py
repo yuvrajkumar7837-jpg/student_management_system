@@ -1,5 +1,6 @@
 from django.db import models
-from accounts.models import use
+from accounts.models import user
+
 
 # Create your models here.
 
@@ -13,6 +14,7 @@ class Student(models.Model):
     phone_no = models.CharField(max_length=15)
     d_o_b = models.DateField(null= True)
     enrollement_date = models.DateField(auto_now_add=True)
+    # deparment = models.ForeignKey(Deparment ,  on_delete=models.CASCADE)
 
 
     def __str__(self):
