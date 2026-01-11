@@ -12,23 +12,17 @@ class Department(models.Model):
         ('B.A', 'B.A'),
     )
 
-    DEP_ID_CHOICES = (
-        (1, 'B.tech'),
-        (2, 'B.com'),
-        (3, 'B.A'),
-    )
-    
 
     dep_name = models.CharField( max_length=50 , choices=STATUS_CHOICES)
-    dep_id = models.IntegerField(choices=DEP_ID_CHOICES)
+
     teacher = models.ForeignKey(Teachers,  on_delete=models.SET_NULL , null = True)
-    students = models.ManyToManyField(Student ,  blank= True)
+
     # class Meta:
     #     verbose_name = _("")
     #     verbose_name_plural = _("s")
 
     def __str__(self):
-        return f"{self.dep_id} - {self.dep_name}"
+        return f"- {self.dep_name}"
     #     return self.name
 
     # def get_absolute_url(self):

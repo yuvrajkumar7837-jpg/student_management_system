@@ -14,7 +14,7 @@ class Student(models.Model):
     phone_no = models.CharField(max_length=15)
     d_o_b = models.DateField(null= True)
     enrollement_date = models.DateField(auto_now_add=True)
-    # deparment = models.ForeignKey(Deparment ,  on_delete=models.CASCADE)
+    deparment = models.ForeignKey("courses.Department",  on_delete=models.SET_NULL, null= True,  blank=True)
 
 
     def __str__(self):
