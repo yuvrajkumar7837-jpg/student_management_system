@@ -15,14 +15,14 @@ class Department(models.Model):
 
     dep_name = models.CharField( max_length=50 , choices=STATUS_CHOICES)
 
-    teacher = models.ForeignKey(Teachers,  on_delete=models.SET_NULL , null = True)
+    hod = models.ForeignKey(Teachers,  on_delete=models.SET_NULL , null = True)
 
     # class Meta:
     #     verbose_name = _("")
     #     verbose_name_plural = _("s")
 
     def __str__(self):
-        return f"- {self.dep_name}"
+        return f"{self.dep_name} "
     #     return self.name
 
     # def get_absolute_url(self):
@@ -39,7 +39,7 @@ class Course(models.Model):  # ✅ Added separate Course model
     students = models.ManyToManyField(Student, blank=True)
     
     def __str__(self):
-        return f"{self.course_code} - {self.course_name}"
+        return f" {self.course_name}"
 
 
 class Attendance(models.Model):

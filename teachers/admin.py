@@ -1,5 +1,7 @@
 from django.contrib import admin
-from teachers import models
+from teachers.models import Teachers
 
 # Register your models here.
-admin.site.register(models.Teachers)
+@admin.register(Teachers)
+class TeachersAdmin(admin.ModelAdmin):
+    list_display = ('t_id','first_name' , 'email')

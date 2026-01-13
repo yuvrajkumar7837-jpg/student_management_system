@@ -18,6 +18,6 @@ class Student(models.Model):
 
 
     def __str__(self):
-        return f'{self.s_id} : {self.first_name} {self.last_name}'
+        return f'{self.first_name} '
     
 
