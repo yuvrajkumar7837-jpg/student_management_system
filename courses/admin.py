@@ -6,7 +6,7 @@ from courses.models import *
 admin.site.register([ Result , ])
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('course_name' , 'course_code')
+    list_display = ( 'department' ,  'course_name' , 'course_code')
 
 admin.site.register(Course , CourseAdmin)
 

@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from students.models import Student
+from courses.models import Course
 
 
 
@@ -40,8 +42,21 @@ def s_login(request):
 
 @login_required
 def student_dashboard(request):
-    return render(request , 'students/dashboard.html')
+    student = Student.objects.get(user = request.user)
+
+    courses = Course.objects.filter(department = student.department)
+
+
+    return render(request , 'students/dashboard.html' , {'student':student , 'courses' : courses})
     # return render(request, "students/dashboard.html")
+
+
+def show_courses(req):
+    student = Student.objects.get(user = req.user)
+
+    courses = Course.objects.filter(department = student.department)
+    return render(req , 'students/courses.html', {'student':student , 'courses' : courses})
+
 
 def logout_view(request):
     logout(request)
