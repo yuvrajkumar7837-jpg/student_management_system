@@ -55,7 +55,7 @@ def show_courses(req):
     student = Student.objects.get(user = req.user)
 
     courses = Course.objects.filter(department = student.department)
-    return render(req , 'students/courses.html', {'student':student , 'courses' : courses})
+    return render(req , 'students/courses.html', {'student':student , 'courses' : courses}) 
 
 
 def logout_view(request):
