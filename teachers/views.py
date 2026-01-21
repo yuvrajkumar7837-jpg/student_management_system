@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
-from courses.models import Course ,Attendance
+from courses.models import Course ,Attendance ,Department
 from students.models import Student
 from teachers.models import Teachers
 from django.http import HttpResponse
@@ -38,43 +38,65 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-@login_required
-def mark_attendance(req):
-    if  not req.user.groups.filter(name = 'teachers').exists():
-        messages.error(req , 'Access Denied You are not a teacher')
+# @login_required
+# def mark_attendance(req):
+#     if  not req.user.groups.filter(name = 'teachers').exists():
+#         messages.error(req , 'Access Denied You are not a teacher')
+#         return redirect('teacher_dashboard')
+    
+#     student = 
+#     courses = Course.objects.all()
+
+#     students = Student.objects.all()
+
+#     if req.method =='POST':
+#         course_code = req.POST.get('course')
+#         course = Course.objects.get(id=course_code)
+        
+#         try:
+#             teacher = Teachers.objects.get(user=req.user)
+#         except Teachers.DoesNotExist:
+#             messages.error(req, "Teacher profile missing")
+#             return redirect("teacher_dashboard")
+
+#         for student in students:
+#             status = req.POST.get(f"Status_{student.id}")
+#             Attendance.objects.create(
+#         ect("teacher_dashboard")
+
+#     # return render(req, "attendance/mark_attendance.html", {
+#     #     "courses": courses,
+#     #     "students": students        student=student,
+#                 course=course,
+#                 status=status,
+#                 marked_by = teacher
+#             )
+
+#         messages.success(req, "Attendance marked successfully")
+#         return redir
+#     # })
+
+
+def mark_attendance(request):
+    #check for teacher or not
+    # if  not req.user.groups.filter(name = 'teachers').exists():
+#         messages.error(req , 'Access Denied You are not a teacher')
+#         return redirect('teacher_dashboard')
+    
+    if not request.user.groups.filter(name = 'teachers').exists():
+        messages.error(request ,'You are not a Teacher')
         return redirect('teacher_dashboard')
     
-    courses = Course.objects.all()
+    department = Department.objects.all()
+    courses = []
 
-    students = Student.objects.all()
+    selected_dept_id = request.GET.get('Department')
 
-    if req.method =='POST':
-        course_code = req.POST.get('course')
-        course = Course.objects.get(id=course_code)
-        
-        try:
-            teacher = Teachers.objects.get(user=req.user)
-        except Teachers.DoesNotExist:
-            messages.error(req, "Teacher profile missing")
-            return redirect("teacher_dashboard")
+    if selected_dept_id:
+        print('fefefffnef')
+        courses = Course.objects.filter(department_id=selected_dept_id)
+   
+   
 
-        for student in students:
-            status = req.POST.get(f"Status_{student.id}")
-            Attendance.objects.create(
-                student=student,
-                course=course,
-                status=status,
-                marked_by = teacher
-            )
-
-        messages.success(req, "Attendance marked successfully")
-        return redirect("teacher_dashboard")
-
-    # return render(req, "attendance/mark_attendance.html", {
-    #     "courses": courses,
-    #     "students": students
-    # })
-
-    return render(req , 'teachers/attendance.html' , {"courses" : courses , "students" : students})
-    
+    return render(request , 'teachers/attendance.html' , {'departments' : department , 'courses': courses , 'selected_dept_id':selected_dept_id })
 

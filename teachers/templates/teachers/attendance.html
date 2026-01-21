@@ -1,59 +1,37 @@
-{% extends "layouts/base.html"%}
+{% extends "layouts/base.html" %}
 
-{% block content%}
-    <div class="box">
+{% block content %}
+<div class="box">
     <h1>📋 Mark Attendance</h1>
 
-    <form method="post" enctype = "multipart/form-data">
+    <form method="post">
         {% csrf_token %}
 
+        <label>Select Department:</label><br>
+        <select name="department" required>
+            <option value="">-- Select Department --</option>
+            {% for department in departments %}
+                <option value="{{ department.id }}"
+                {% if department.id|stringformat:"s" == selected_dept_id %}selected{% endif %}>
+                    {{ department.dep_name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <button type="submit">Load Courses</button>
+
+        <br><br>
+
+        {% if courses %}
         <label>Select Course:</label><br>
         <select name="course" required>
             {% for course in courses %}
                 <option value="{{ course.id }}">{{ course.course_name }}</option>
-                
             {% endfor %}
         </select>
-
-        <hr>
-
-        <table border ="15px" width="100%" cellpadding="5">
-            <tr>
-                <th>Student</th>
-                <th>Status</th>
-            </tr>
-
-            {% for student in students %}
-            <tr>
-                <td class="px-6 py-4 border text-center">
-                        {{ student.user.username }}
-                </td>
-                <td class="px-6 py-4 border">
-                    <div class="flex justify-center">
-                        <select name = "Status_{{student.id}}" class="border rounded px-4 py-2" required>
-                        <option value="present">Present</option>
-                        <option value="absent">Absent</option>
-                        </select>
-                    </div>
-                    </td>
-
-            {% endfor %}
-        </table>
-
-        <br>
-        <button
-  type="submit"
-  class="bg-gradient-to-r from-blue-600 to-indigo-600
-         text-white font-semibold px-8 py-3 rounded-xl
-         shadow-lg transform transition-all duration-300
-         hover:scale-105 hover:shadow-xl
-         active:scale-95 focus:outline-none focus:ring-4
-         focus:ring-blue-300">
-  Submit Attendance
-</button>
+        {% endif %}
     </form>
 </div>
-{% endblock content%}
-</body>
-</html>
-
+{% endblock %}
