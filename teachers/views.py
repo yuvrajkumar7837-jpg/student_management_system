@@ -90,10 +90,9 @@ def mark_attendance(request):
     department = Department.objects.all()
     courses = []
 
-    selected_dept_id = request.GET.get('Department')
+    selected_dept_id = request.GET.get('department')
 
     if selected_dept_id:
-        print('fefefffnef')
         courses = Course.objects.filter(department_id=selected_dept_id)
    
    

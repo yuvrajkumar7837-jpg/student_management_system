@@ -1,37 +1,64 @@
 {% extends "layouts/base.html" %}
 
 {% block content %}
-<div class="box">
-    <h1>📋 Mark Attendance</h1>
+<div class="container mt-4">
+
+    <h4 class="mb-4">📋 Mark Attendance</h4>
 
     <form method="post">
         {% csrf_token %}
 
-        <label>Select Department:</label><br>
-        <select name="department" required>
-            <option value="">-- Select Department --</option>
-            {% for department in departments %}
-                <option value="{{ department.id }}"
-                {% if department.id|stringformat:"s" == selected_dept_id %}selected{% endif %}>
-                    {{ department.dep_name }}
-                </option>
-            {% endfor %}
-        </select>
+        <!-- DROPDOWNS ROW -->
+        <div class="row justify-content-center mb-3">
 
-        <br><br>
+            <!-- Department -->
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Select Department</label>
+                <select class="form-select" name="department" required>
+                    <option value="">-- Select Department --</option>
+                    {% for department in departments %}
+                    <option value="{{ department.id }}" >
+                        {{ department.dep_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
 
-        <button type="submit">Load Courses</button>
+            <!-- Course -->
+            {% if courses %}
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Select Course</label>
+                <select class="form-select" name="course" required>
+                    <option value="">-- Select Course --</option>
+                    {% for course in courses %}
+                    <option value="{{ course.id }}">
+                        {{ course.course_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            {% endif %}
 
-        <br><br>
+        </div>
 
-        {% if courses %}
-        <label>Select Course:</label><br>
-        <select name="course" required>
-            {% for course in courses %}
-                <option value="{{ course.id }}">{{ course.course_name }}</option>
-            {% endfor %}
-        </select>
-        {% endif %}
+        <!-- BUTTON ROW -->
+        <div class="row justify-content-center">
+            <div class="col-md-3 text-center">
+                <button type="submit" class="btn btn-primary w-100" name="action" value="load_courses">
+                    Load Courses
+                </button>
+            </div>
+            {% if courses %}
+            <div class="col-md-3 text-center">
+                <button type="submit" class="btn btn-primary w-100" name="action" value="load_students">
+                    Load Students
+                </button>
+            </div>
+            {% endif %}
+        </div>
+
+
     </form>
+
 </div>
 {% endblock %}
