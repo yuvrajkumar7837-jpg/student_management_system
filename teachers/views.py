@@ -106,6 +106,25 @@ def mark_attendance(request):
         course = Course.objects.get(id = selected_course_id)
         students = Student.objects.filter(department= course.department)
 
+    if action == 'save_attendance' and selected_course_id:
+            course = Course.objects.get(id=selected_course_id)
+            teacher = Teachers.objects.get(user=request.user)
+
+            students = Student.objects.filter(department=course.department)
+            for student in students:
+                status = request.POST.get(f"status_{student.id}")
+
+                Attendance.objects.create(
+                    student=student,
+                    course=course,
+                    status=status,
+                    marked_by=teacher
+                )
+
+            messages.success(request, "Attendance saved successfully ✅")
+            return redirect("mark_attendance") 
+
+
    
    
 
