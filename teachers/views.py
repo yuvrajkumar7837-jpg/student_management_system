@@ -89,13 +89,25 @@ def mark_attendance(request):
     
     department = Department.objects.all()
     courses = []
+    students = []
+    
+    selected_department = None
 
-    selected_dept_id = request.GET.get('department')
+
+    selected_dept_id = request.POST.get('department')
+    selected_course_id = request.POST.get('course')
+    action = request.POST.get('action')
+
 
     if selected_dept_id:
         courses = Course.objects.filter(department_id=selected_dept_id)
+    
+    if action == 'load_students' and selected_course_id :
+        course = Course.objects.get(id = selected_course_id)
+        students = Student.objects.filter(department= course.department)
+
    
    
 
-    return render(request , 'teachers/attendance.html' , {'departments' : department , 'courses': courses , 'selected_dept_id':selected_dept_id })
+    return render(request , 'teachers/attendance.html' , {'departments' : department , 'courses': courses , 'selected_department':selected_dept_id  , 'students':students , 'selected_course_id':selected_course_id})
 

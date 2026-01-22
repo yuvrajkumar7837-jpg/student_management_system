@@ -14,11 +14,17 @@
             <!-- Department -->
             <div class="col-md-4">
                 <label class="form-label fw-semibold">Select Department</label>
-                <select class="form-select" name="department" required>
-                    <option value="">-- Select Department --</option>
+                <select class="form-select" name="department" required >
+                    <option value="" disabled selected
+                        {% if not selected_department %}selected{% endif %}>
+                    -- Select Department --</option>
                     {% for department in departments %}
-                    <option value="{{ department.id }}" >
+                    <option value="{{ department.id }}" 
+                     {% if department.id|stringformat:"s" == selected_department %}
+                            selected
+                        {% endif %}>
                         {{ department.dep_name }}
+                
                     </option>
                     {% endfor %}
                 </select>
@@ -29,7 +35,7 @@
             <div class="col-md-4">
                 <label class="form-label fw-semibold">Select Course</label>
                 <select class="form-select" name="course" required>
-                    <option value="">-- Select Course --</option>
+                    <option value="course" disabled selected>-- Select Course --</option>
                     {% for course in courses %}
                     <option value="{{ course.id }}">
                         {{ course.course_name }}
@@ -56,6 +62,41 @@
             </div>
             {% endif %}
         </div>
+
+         <!-- Students Table -->
+        {% if students %}
+        <hr class="my-4">
+
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Student</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.user.username }}</td>
+                    <td>
+                        <select name="status_{{ student.id }}" class="form-select">
+                            <option value="present">Present</option>
+                            <option value="absent">Absent</option>
+                        </select>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <button type="submit" name="action" value="save_attendance"
+                    class="btn btn-success px-5">
+                Submit Attendance
+            </button>
+        </div>
+        {% endif %}
+
 
 
     </form>
