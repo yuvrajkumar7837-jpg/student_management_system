@@ -107,6 +107,11 @@ def mark_attendance(request):
         students = Student.objects.filter(department= course.department)
 
     if action == 'save_attendance' and selected_course_id:
+            try: 
+                teacher = Teachers.objects.get(user=request.user)
+            except Teachers.DoesNotExist:
+                messages.error(request, "Teacher profile missing")
+                return redirect("teacher_dashboard")
             course = Course.objects.get(id=selected_course_id)
             teacher = Teachers.objects.get(user=request.user)
 
@@ -114,7 +119,7 @@ def mark_attendance(request):
             for student in students:
                 status = request.POST.get(f"status_{student.id}")
 
-                Attendance.objects.create(
+                Attendance.objects.update_or_create(
                     student=student,
                     course=course,
                     status=status,
