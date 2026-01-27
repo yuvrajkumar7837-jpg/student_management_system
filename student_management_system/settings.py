@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'teachers',
     'courses',
     'accounts',
+    'rest_framework',
+    'api',
 ]
 
 TAILWIND_APP_NAME = 'theme'

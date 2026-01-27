@@ -19,11 +19,13 @@ from django.urls import path , include
 from students import views
 from django.contrib.auth.views import LogoutView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',  views.home , name ='home'),
     path('students/' , include('students.urls')),
     path('teachers/' , include('teachers.urls')),
+    path('api/v1/' , include('api.urls')),
     # path("logout/", LogoutView.as_view(), name="logout"),
 
     # path('teacher_login/' , views.t_login , name='t_login'),
